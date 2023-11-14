@@ -136,14 +136,15 @@ const CalculatorForm = () => {
           <div className="firstrow flex space-x-5 mt-8 justify-between items-center">
             {/* Financial Year */}
             <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center w-full lg:w-1/2 financial-year">
-              <div className="flex items-center text-sm lg:w-1/2 mb-2 lg:mb-0">
+              <div className="flex items-center text-sm w-1/2 mb-2 lg:mb-0">
                 <h4>Financial Year</h4>
               </div>
               <div className=" w-full mx-0 lg:mx-2">
                 <TextField
                   select
                   label="FY"
-                  sx={{ backgroundColor: "#EFF2F5", width: "100%" }}
+                  // sx={{ backgroundColor: "#EFF2F5", width: "100%" }}
+                  className="w-full"
                 >
                   <MenuItem key="coutry" value="year">
                     FY 2023-2024

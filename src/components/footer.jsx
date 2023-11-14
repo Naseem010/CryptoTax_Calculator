@@ -127,7 +127,7 @@ const Footer = () => {
                 Exchanges and Web3 projects
               </a>
             </p>
-            <p className="mb-4">
+            <p className="mb-4 flex justify-center">
               <img src={IasLogo} alt="Logo" />
             </p>
           </div>
