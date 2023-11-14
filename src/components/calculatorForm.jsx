@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { AiFillCheckCircle } from "react-icons/ai";
+import CheckIcon from '@mui/icons-material/Check';
 
 const INCOME_RANGES = [
   {
@@ -128,57 +128,54 @@ const CalculatorForm = () => {
 
   return (
     <div>
-      <div className="bg-white  rounded-xl px-20 py-12">
+      <div className="bg-white  rounded-xl md:px-10 lg:px-20 py-5 md:py-10 lg:py-16 px-7">
         <div className=" text-[#0F1629]">
           <div className=" main-heading text-center text-3xl font-black tracking-tighter">
             <h3>Free Crypto Tax Calculator Australia</h3>
           </div>
-          <div className="firstrow md:flex mt-12  justify-between">
-            <div className="flex financial-year">
-              <div className="flex items-center text-sm">
-                <h4>Financial Year</h4>
-              </div>
-              <div className="w-44 ml-5 ">
-                <TextField
-                  select
-                  label="FY"
-                  sx={{ backgroundColor: "#EFF2F5", width: "200px" }}
-                >
-                  <MenuItem key="coutry" value="year">
-                    FY 2023-2024
-                  </MenuItem>
-                </TextField>
-              </div>
-            </div>
-            <div className="country flex">
-              <div className="flex items-center text-sm">
-                <h4 className="justify-center">Country</h4>
-              </div>
-              <div
-                style={{
-                  width: "200px",
-                  height: "56px",
-                  paddingBottom: "0px",
-                  marginLeft: "20px",
-                }}
-              >
-                <ReactFlagsSelect
-                  className="menu-flags bg-[#EFF2F5]"
-                  defaultCountry="AU"
-                  selected={selectedCountry}
-                  onSelect={(code) => setSelectedCountry(code)}
-                  searchable
-                  searchPlaceholder="Search countries"
-                />
-              </div>
-            </div>
-          </div>
+          <div className="firstrow flex space-x-5 mt-8 justify-between items-center">
+  {/* Financial Year */}
+  <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center w-full lg:w-1/2 financial-year">
+    <div className="flex items-center text-sm lg:w-1/2 mb-2 lg:mb-0">
+      <h4>Financial Year</h4>
+    </div>
+    <div className=" w-full mx-0 lg:mx-2">
+      <TextField
+        select
+        label="FY"
+        sx={{ backgroundColor: "#EFF2F5", width: "100%" }}
+      >
+        <MenuItem key="coutry" value="year">
+          FY 2023-2024
+        </MenuItem>
+      </TextField>
+    </div>
+  </div>
+
+  {/* Country */}
+  <div className="country flex flex-col lg:flex-row justify-center lg:items-center w-full lg:w-1/2 lg:ml-5 mt-5 lg:mt-0">
+    <div className="flex items-center text-sm lg:w-1/4 mb-2 lg:mb-0">
+      <h4 className="justify-center">Country</h4>
+    </div>
+    <div className="w-full lg:w-full h-14 pb-0 lg:ml-0 lg:pl-5">
+      <ReactFlagsSelect
+        className="menu-flags bg-[#EFF2F5] w-full"
+        defaultCountry="AU"
+        selected={selectedCountry}
+        onSelect={(code) => setSelectedCountry(code)}
+        searchable
+        searchPlaceholder="Search countries"
+      />
+    </div>
+  </div>
+</div>
+
           <div className="h-[2px] bg-[#dee1e6] my-5"></div>
 
           {/*second Row*/}
 
-          <div className="secondrow md:flex justify-between">
-            <div className="flex flex-col text-sm">
+          <div className="secondrow w-full md:flex justify-between">
+            <div className="flex flex-col text-sm sm:w-full md:w-1/2 mr-4">
               <label>Enter purchase price of Crypto</label>
               <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                 <OutlinedInput
@@ -191,7 +188,7 @@ const CalculatorForm = () => {
                 />
               </FormControl>
             </div>
-            <div className="flex flex-col text-sm">
+            <div className="flex flex-col text-sm sm:w-full md:w-1/2">
               <label>Enter sale price of Crypto</label>
               <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                 <OutlinedInput
@@ -207,8 +204,8 @@ const CalculatorForm = () => {
           </div>
 
           {/*thirdrow*/}
-          <div className="thirdrow md:flex justify-between mt-5">
-            <div className="flex flex-col text-sm">
+          <div className="thirdrow w-full md:flex justify-between mt-5">
+            <div className="flex flex-col sm:w-full md:w-1/2 text-sm w-1/2 mr-4">
               <label>Enter your Expenses</label>
               <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                 <OutlinedInput
@@ -221,10 +218,10 @@ const CalculatorForm = () => {
                 />
               </FormControl>
             </div>
-            <div className="flex flex-col text-sm">
+            <div className="flex  sm:w-full md:w-1/2 flex-col text-sm">
               <label>Investment Type</label>
               <Stack spacing={2} direction="row" className="mt-2 ">
-                <div>
+                <div className="w-1/2">
                   <Button
                     type="button"
                     onClick={() => handleClickButton(false)}
@@ -235,11 +232,11 @@ const CalculatorForm = () => {
                         : "border-gray-700 focus:border-gray-500 text-gray-700 "
                     }`}
                   >
-                    Short Term {isShortTerm && <AiFillCheckCircle size={20} />}
+                    Short Term {isShortTerm && <CheckIcon size={22} />}
                   </Button>
                   <p className="text-xs"> &#60;12 Months</p>
                 </div>
-                <div>
+                <div className="w-1/2">
                   <Button
                     type="button"
                     onClick={() => handleClickButton(true)}
@@ -250,7 +247,7 @@ const CalculatorForm = () => {
                         : "border-gray-700 focus:border-gray-500 text-gray-700 "
                     }`}
                   >
-                    Long Term {isLongTerm && <AiFillCheckCircle size={20} />}
+                    Long Term {isLongTerm && <CheckIcon size={22} />}
                   </Button>
                   <p className="text-xs"> &#62;12 Months</p>
                 </div>
@@ -259,33 +256,33 @@ const CalculatorForm = () => {
           </div>
 
           {/*fourthrow*/}
-          <div className="fourthrow md:flex space-x-32 mt-5">
-            <div>
-              <div className="text-sm">
+          <div className="fourthrow w-full md:flex mt-5">
+            <div className="sm:w-full md:w-1/2 mr-4">
+              <div className="text-sm w-full">
                 <label>Select Your Annual Income</label>
               </div>
-              <div>
+              <div className="sm:w-full md:w-full">
                 <select
                   onChange={handleTaxRateChange}
-                  className="h-14 w-64 rounded-md p-3"
+                  className="h-14 w-full rounded-md p-3"
                 >
                   {INCOME_RANGES.map((item) => (
-                    <option>{item.range}</option>
+                    <option className="sm:w-full md:w-1/2">{item.range}</option>
                   ))}
                 </select>
               </div>
             </div>
-            <div>
-              <div className="text-sm mt-2">Tax Rate</div>
-              <div className="text-sm mt-3">{taxValue}</div>
+            <div className="sm:w-full md:w-1/2 p-2 ">
+              <p className="text-xs mt-5">Tax Rate</p>
+              <p className="text-xs mt-1">{taxValue}</p>
             </div>
           </div>
 
           {/*fifthrow*/}
 
           {showlongTerm && (
-            <div className="fifthrow md:flex justify-between mt-5">
-              <div className="flex flex-col text-sm">
+            <div className="fifthrow md:flex justify-between mt-5 w-full">
+              <div className="flex flex-col text-sm md:w-1/2 sm:w-full mr-4">
                 <label>Capital gains amount</label>
                 <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                   <OutlinedInput
@@ -299,7 +296,7 @@ const CalculatorForm = () => {
                   />
                 </FormControl>
               </div>
-              <div className="flex flex-col text-sm">
+              <div className="flex flex-col text-sm md:w-1/2 sm:w-full">
                 <label>Discount for long term gains</label>
                 <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                   <OutlinedInput
@@ -318,13 +315,13 @@ const CalculatorForm = () => {
 
           {/*sixthrow*/}
 
-          <div className="sixthrow md:flex justify-between mt-7">
-            <div className=" bg-[#d4faed] p-8 flex flex-col items-center overflow-x-auto rounded-lg">
+          <div className="sixthrow md:flex justify-between mt-7 w-full">
+            <div className=" bg-[#d4faed] p-8 flex flex-col items-center md:w-1/2 sm:w-full rounded-lg mr-4 sm:mb-6 md:mb-0">
               <p className="text-sm ">Net Capital Gains tax amount</p>
 
               <h5 className="text-[#0FBA83]">&#36;{isNetCapitalGains}</h5>
             </div>
-            <div className=" bg-[#d4faed] p-8 flex flex-col items-center rounded-lg w-2/5">
+            <div className=" bg-[#d4faed] p-8 flex flex-col items-center md:w-1/2 sm:w-full rounded-lg md:ml-4 ">
               <p className="text-sm ">The tax you need to pay*</p>
 
               <h5 className="text-[#0141CF]">&#36;{istaxpayable}</h5>
