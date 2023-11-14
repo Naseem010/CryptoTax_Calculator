@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import CheckIcon from '@mui/icons-material/Check';
+import CheckIcon from "@mui/icons-material/Check";
 
 const INCOME_RANGES = [
   {
@@ -134,41 +134,41 @@ const CalculatorForm = () => {
             <h3>Free Crypto Tax Calculator Australia</h3>
           </div>
           <div className="firstrow flex space-x-5 mt-8 justify-between items-center">
-  {/* Financial Year */}
-  <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center w-full lg:w-1/2 financial-year">
-    <div className="flex items-center text-sm lg:w-1/2 mb-2 lg:mb-0">
-      <h4>Financial Year</h4>
-    </div>
-    <div className=" w-full mx-0 lg:mx-2">
-      <TextField
-        select
-        label="FY"
-        sx={{ backgroundColor: "#EFF2F5", width: "100%" }}
-      >
-        <MenuItem key="coutry" value="year">
-          FY 2023-2024
-        </MenuItem>
-      </TextField>
-    </div>
-  </div>
+            {/* Financial Year */}
+            <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center w-full lg:w-1/2 financial-year">
+              <div className="flex items-center text-sm lg:w-1/2 mb-2 lg:mb-0">
+                <h4>Financial Year</h4>
+              </div>
+              <div className=" w-full mx-0 lg:mx-2">
+                <TextField
+                  select
+                  label="FY"
+                  sx={{ backgroundColor: "#EFF2F5", width: "100%" }}
+                >
+                  <MenuItem key="coutry" value="year">
+                    FY 2023-2024
+                  </MenuItem>
+                </TextField>
+              </div>
+            </div>
 
-  {/* Country */}
-  <div className="country flex flex-col lg:flex-row justify-center lg:items-center w-full lg:w-1/2 lg:ml-5 mt-5 lg:mt-0">
-    <div className="flex items-center text-sm lg:w-1/4 mb-2 lg:mb-0">
-      <h4 className="justify-center">Country</h4>
-    </div>
-    <div className="w-full lg:w-full h-14 pb-0 lg:ml-0 lg:pl-5">
-      <ReactFlagsSelect
-        className="menu-flags bg-[#EFF2F5] w-full"
-        defaultCountry="AU"
-        selected={selectedCountry}
-        onSelect={(code) => setSelectedCountry(code)}
-        searchable
-        searchPlaceholder="Search countries"
-      />
-    </div>
-  </div>
-</div>
+            {/* Country */}
+            <div className="country flex flex-col lg:flex-row justify-center lg:items-center w-full lg:w-1/2 lg:ml-5 mt-5 lg:mt-0">
+              <div className="flex items-center text-sm lg:w-1/4 mb-2 lg:mb-0">
+                <h4 className="justify-center">Country</h4>
+              </div>
+              <div className="w-full lg:w-full h-14 pb-0 lg:ml-0 lg:pl-5">
+                <ReactFlagsSelect
+                  className="menu-flags bg-[#EFF2F5] w-full"
+                  defaultCountry="AU"
+                  selected={selectedCountry}
+                  onSelect={(code) => setSelectedCountry(code)}
+                  searchable
+                  searchPlaceholder="Search countries"
+                />
+              </div>
+            </div>
+          </div>
 
           <div className="h-[2px] bg-[#dee1e6] my-5"></div>
 

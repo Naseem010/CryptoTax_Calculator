@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from '../assets/logo.png';
-import IasLogo from '../assets/IasLogo.png'
+import Logo from "../assets/logo.png";
+import IasLogo from "../assets/IasLogo.png";
 import {
   BiLogoLinkedin,
   BiLogoFacebook,
@@ -18,10 +18,7 @@ const Footer = () => {
       </div>
       <div className="flex items-center justify-center sm:border-b-[1px] border-white  py-4 sm:p-6  lg:justify-between">
         <div className="mr-12 hidden lg:block">
-          <img
-            src={Logo}
-            alt="Logo"
-          />
+          <img src={Logo} alt="Logo" />
         </div>
 
         {/* <!-- Social network icons container --> */}
@@ -131,10 +128,7 @@ const Footer = () => {
               </a>
             </p>
             <p className="mb-4">
-            <img
-            src={IasLogo}
-            alt="Logo"
-          />
+              <img src={IasLogo} alt="Logo" />
             </p>
           </div>
           {/* Free Tools Section */}
