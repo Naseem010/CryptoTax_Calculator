@@ -5,10 +5,12 @@ import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import { AiFillCaretDown, AiFillCheckCircle } from "react-icons/ai";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import CheckIcon from "@mui/icons-material/Check";
-
+import { AiFillAlipaySquare } from "react-icons/ai";
+import "../App.css";
 const INCOME_RANGES = [
   {
     id: 1,
@@ -52,7 +54,7 @@ const CalculatorForm = () => {
   const [isPurchaseValue, setIsPurchaseValue] = useState("");
   const [isSaleprice, setIsSalePrice] = useState("");
   const [isExpensePrice, setIsExpensePrice] = useState("");
-  const [isNetCapitalGains, setIsNetCapitalGains] = useState("");
+  const [isNetCapitalGains, setIsNetCapitalGains] = useState("0");
   const [isCapitalGains, setIsCapitalGains] = useState("");
   const [istaxpayable, setIstaxPayable] = useState(0);
   const [istaxPercentage, setTaxPercentage] = useState(0);
@@ -98,17 +100,18 @@ const CalculatorForm = () => {
   useEffect(() => {
     if (isPurchaseValue !== "" && isSaleprice !== "" && isExpensePrice !== "") {
       const capitalgains = isSaleprice - isPurchaseValue - isExpensePrice;
-      if (capitalgains >= 0) {
         if (isShortTerm) {
           setIsNetCapitalGains(capitalgains);
           setIstaxPayable(capitalgains * istaxPercentage);
         } else if (isLongTerm) {
           setIsCapitalGains(capitalgains);
+          if(capitalgains>=0){
           setIsDiscount(0.5 * capitalgains);
+          }
           setIsNetCapitalGains(capitalgains - isDiscount);
-          setIstaxPayable(capitalgains * istaxPercentage);
+          setIstaxPayable(isDiscount * istaxPercentage);
         }
-      }
+      
     }
   }, [
     isShortTerm,
@@ -128,24 +131,21 @@ const CalculatorForm = () => {
 
   return (
     <div>
-      <div className="bg-white  rounded-xl md:px-10 lg:px-20 py-5 md:py-10 lg:py-16 px-7">
-        <div className=" text-[#0F1629]">
-          <div className=" main-heading text-center text-3xl font-black tracking-tighter">
-            <h3>Free Crypto Tax Calculator Australia</h3>
+      <div className="bg-white  text-[#0e1529] rounded-xl md:px-10 lg:px-20 py-4 md:py-10 lg:py-16 px-4">
+        <div className="">
+          <div className=" main-heading sm:text-[24px] [font-family:'Inter-Bold',Helvetica] font-bold text-[#0e1529] md:text-[36px] text-center">
+            <h3 className="">Free Crypto Tax Calculator Australia</h3>
           </div>
           <div className="firstrow flex space-x-5 mt-8 justify-between items-center">
             {/* Financial Year */}
             <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center w-full lg:w-1/2 financial-year">
-              <div className="flex items-center text-sm w-1/2 mb-2 lg:mb-0">
-                <h4>Financial Year</h4>
+              <div className="flex items-center text-sm lg:w-1/2 w-full mb-2 lg:mb-0">
+                <h4 className="font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
+                  Financial Year
+                </h4>
               </div>
-              <div className=" w-full mx-0 lg:mx-2">
-                <TextField
-                  select
-                  label="FY"
-                  // sx={{ backgroundColor: "#EFF2F5", width: "100%" }}
-                  className="w-full"
-                >
+              <div className=" w-full mx-0 lg:mx-2 bg-[#EFF2F5]">
+                <TextField select label="FY" className="w-full">
                   <MenuItem key="coutry" value="year">
                     FY 2023-2024
                   </MenuItem>
@@ -154,13 +154,15 @@ const CalculatorForm = () => {
             </div>
 
             {/* Country */}
-            <div className="country flex flex-col lg:flex-row justify-center lg:items-center w-full lg:w-1/2 lg:ml-5 mt-5 lg:mt-0">
-              <div className="flex items-center text-sm lg:w-1/4 mb-2 lg:mb-0">
-                <h4 className="justify-center">Country</h4>
+            <div className="country flex flex-col lg:flex-row justify-center lg:items-center w-full lg:w-1/2 lg:ml-5 md:mt-0">
+              <div className="flex items-center text-md lg:w-1/4 mb-2 lg:mb-0">
+                <h4 className="justify-center font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
+                  Country
+                </h4>
               </div>
-              <div className="w-full lg:w-full h-14 pb-0 lg:ml-0 lg:pl-5">
+              <div className=" australia w-full lg:w-full lg:ml-0 lg:pl-5">
                 <ReactFlagsSelect
-                  className="menu-flags bg-[#EFF2F5] w-full"
+                  className="menu-flags w-full "
                   defaultCountry="AU"
                   selected={selectedCountry}
                   onSelect={(code) => setSelectedCountry(code)}
@@ -176,7 +178,7 @@ const CalculatorForm = () => {
           {/*second Row*/}
 
           <div className="secondrow w-full md:flex justify-between">
-            <div className="flex flex-col text-sm sm:w-full md:w-1/2 mr-4">
+            <div className="flex flex-col text-sm sm:w-full md:w-1/2 mr-4 font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
               <label>Enter purchase price of Crypto</label>
               <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                 <OutlinedInput
@@ -189,7 +191,7 @@ const CalculatorForm = () => {
                 />
               </FormControl>
             </div>
-            <div className="flex flex-col text-sm sm:w-full md:w-1/2">
+            <div className="flex flex-col text-sm sm:w-full md:w-1/2 font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
               <label>Enter sale price of Crypto</label>
               <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                 <OutlinedInput
@@ -205,8 +207,8 @@ const CalculatorForm = () => {
           </div>
 
           {/*thirdrow*/}
-          <div className="thirdrow w-full md:flex justify-between mt-5">
-            <div className="flex flex-col sm:w-full md:w-1/2 text-sm w-1/2 mr-4">
+          <div className="thirdrow w-full md:flex justify-between mt-5 font-normal  text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
+            <div className="flex flex-col sm:w-full md:w-1/2 text-sm w-1/2 mr-4 ">
               <label>Enter your Expenses</label>
               <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                 <OutlinedInput
@@ -220,52 +222,66 @@ const CalculatorForm = () => {
               </FormControl>
             </div>
             <div className="flex  sm:w-full md:w-1/2 flex-col text-sm">
-              <label>Investment Type</label>
-              <Stack spacing={2} direction="row" className="mt-2 ">
+              <label className="font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
+                Investment Type
+              </label>
+
+              <div className="flex md:flex w-full gap-2 mt-1">
                 <div className="w-1/2">
-                  <Button
+                  <button
                     type="button"
-                    onClick={() => handleClickButton(false)}
-                    variant="outlined"
-                    className={`w-full h-14 text-xs ${
+                    id="shortTerm"
+                    onClick={() => {
+                      handleClickButton(false);
+                    }}
+                    className={`flex items-center justify-center gap-2  w-full  text-sm  mr-2 sm:mr-4 py-4 sm:px-4 rounded leading-tight  border-2 ${
                       isShortTerm
-                        ? "text-blue-700 border-blue-600 focus:border-blue-600 font-bold"
+                        ? "text-blue-700 border-blue-600 focus:border-blue-600 font-bold py-3 bg-[#0052FE0F]"
                         : "border-gray-700 focus:border-gray-500 text-gray-700 "
                     }`}
                   >
-                    Short Term {isShortTerm && <CheckIcon size={22} />}
-                  </Button>
-                  <p className="text-xs"> &#60;12 Months</p>
+                    Short Term
+                    {isShortTerm && <CheckIcon />}
+                  </button>
+                  <p className={`mx-2 text-xs ${isShortTerm ? "" : ""}`}>
+                    &#60;12 Months
+                  </p>
                 </div>
                 <div className="w-1/2">
-                  <Button
+                  <button
                     type="button"
-                    onClick={() => handleClickButton(true)}
-                    variant="outlined"
-                    className={`w-full h-14 text-xs ${
-                      isShortTerm
-                        ? "text-blue-700 border-blue-600 focus:border-blue-600 font-bold"
-                        : "border-gray-700 focus:border-gray-500 text-gray-700 "
-                    }`}
+                    id="longTerm"
+                    onClick={() => {
+                      handleClickButton(true);
+                    }}
+                    className={`flex items-center justify-center gap-2 
+                                   w-full text-sm  mr-2 sm:mr-4 py-4 sm:px-4 rounded leading-tight border-2 ${
+                                     isLongTerm
+                                       ? "text-blue-700 font-bold border-blue-600 focus:border-blue-600 py-3 bg-[#0052FE0F]"
+                                       : "border-gray-700 focus:border-gray-500 text-gray-700"
+                                   }`}
                   >
-                    Long Term {isLongTerm && <CheckIcon size={22} />}
-                  </Button>
-                  <p className="text-xs"> &#62;12 Months</p>
+                    Long Term
+                    {isLongTerm && <CheckIcon />}
+                  </button>
+                  <p className={`mx-2 text-xs ${isLongTerm ? "" : ""}`}>
+                    &#62;12 Months
+                  </p>
                 </div>
-              </Stack>
+              </div>
             </div>
           </div>
 
           {/*fourthrow*/}
-          <div className="fourthrow w-full md:flex mt-5">
+          <div className="fourthrow w-full md:flex mt-5 font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
             <div className="sm:w-full md:w-1/2 mr-4">
-              <div className="text-sm w-full">
+              <div className="text-sm w-full font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap ">
                 <label>Select Your Annual Income</label>
               </div>
               <div className="sm:w-full md:w-full">
                 <select
                   onChange={handleTaxRateChange}
-                  className="h-14 w-full rounded-md p-3"
+                  className="h-14 w-full rounded-md px-3"
                 >
                   {INCOME_RANGES.map((item) => (
                     <option className="sm:w-full md:w-1/2">{item.range}</option>
@@ -274,8 +290,10 @@ const CalculatorForm = () => {
               </div>
             </div>
             <div className="sm:w-full md:w-1/2 p-2 ">
-              <p className="text-xs mt-5">Tax Rate</p>
-              <p className="text-xs mt-1">{taxValue}</p>
+              <p className="text-sm font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
+                Tax Rate
+              </p>
+              <p className="text-sm mt-2">{taxValue}</p>
             </div>
           </div>
 
@@ -283,8 +301,8 @@ const CalculatorForm = () => {
 
           {showlongTerm && (
             <div className="fifthrow md:flex justify-between mt-5 w-full">
-              <div className="flex flex-col text-sm md:w-1/2 sm:w-full mr-4">
-                <label>Capital gains amount</label>
+              <div className="flex flex-col text-sm md:w-1/2 sm:w-full mr-4 font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
+                <label className="">Capital gains amount</label>
                 <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                   <OutlinedInput
                     startAdornment={
@@ -297,7 +315,7 @@ const CalculatorForm = () => {
                   />
                 </FormControl>
               </div>
-              <div className="flex flex-col text-sm md:w-1/2 sm:w-full">
+              <div className="flex flex-col text-sm md:w-1/2 sm:w-full font-normal text-[15px] tracking-[0] leading-[24px] whitespace-nowrap">
                 <label>Discount for long term gains</label>
                 <FormControl sx={{ my: 1, backgroundColor: "#EFF2F5" }}>
                   <OutlinedInput
@@ -317,15 +335,19 @@ const CalculatorForm = () => {
           {/*sixthrow*/}
 
           <div className="sixthrow md:flex justify-between mt-7 w-full">
-            <div className=" bg-[#d4faed] p-8 flex flex-col items-center md:w-1/2 sm:w-full rounded-lg mr-4 sm:mb-6 md:mb-0">
+            <div className=" bg-[#EBF9F4] p-8 flex flex-col items-center md:w-1/2 sm:w-full rounded-lg mr-4 sm:mb-6 md:mb-0 font-normal text-[16px] tracking-[0] leading-[24px] whitespace-nowrap">
               <p className="text-sm ">Net Capital Gains tax amount</p>
 
-              <h5 className="text-[#0FBA83]">&#36;{isNetCapitalGains}</h5>
+              <h5 className="text-[#0FBA83] font-bold text-[24px] mt-2">
+                &#36;{isNetCapitalGains}
+              </h5>
             </div>
-            <div className=" bg-[#d4faed] p-8 flex flex-col items-center md:w-1/2 sm:w-full rounded-lg md:ml-4 ">
+            <div className=" bg-[#EBF9F4] p-8 flex flex-col items-center md:w-1/2 sm:w-full rounded-lg md:ml-4 font-normal text-[16px] tracking-[0] leading-[24px] whitespace-nowrap">
               <p className="text-sm ">The tax you need to pay*</p>
 
-              <h5 className="text-[#0141CF]">&#36;{istaxpayable}</h5>
+              <h5 className="text-[#0141CF] font-bold text-[24px] mt-2">
+                &#36;{istaxpayable}
+              </h5>
             </div>
           </div>
         </div>

@@ -12,10 +12,10 @@ export default function App() {
     <div>
       <Navbar />
       <div className="lg:flex ">
-        <div className="py-5 px-10 lg:w-8/12">
+        <div className="lg:mx-14 lg:my-7 lg:w-8/12 sm:mx-[15px] sm:mt-[20px] sm:mb-[48px]">
           <CalculatorForm />
         </div>
-        <div className=" lg:w-4/12 ">
+        <div className=" lg:w-4/12 lg:my-7"> 
           <GetStarted />
         </div>
       </div>

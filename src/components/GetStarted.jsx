@@ -3,13 +3,13 @@ import img from "../assets/3D.png";
 import { BsArrowRight } from "react-icons/bs";
 const GetStarted = () => {
   return (
-    <div className="mt-5 mx-10 lg:ml-0">
-      <div className="get-started">
-        <h3 className="get-started-title">Get Started with KoinX for FREE</h3>
-        <h5 className="get-started-subtitle">
+    <div className=" mx-10 lg:ml-0">
+      <div className="get-started py-5">
+      <div className="py-5"> <h3 className="get-started-title">Get Started with KoinX for FREE</h3></div>
+      <div className="pb-10">  <h5 className="get-started-subtitle">
           With our range of features that you can equip for free, KoinX allows
           you to be more educated and aware of your tax reports.
-        </h5>
+        </h5></div>
         <img
           alt="get-started"
           loading="lazy"
@@ -21,7 +21,7 @@ const GetStarted = () => {
           style={{ color: "transparent" }}
           src={img}
         />
-
+<div className="py-5">
         <button
           className="get-started-btn  block "
           style={{
@@ -38,6 +38,7 @@ const GetStarted = () => {
             </span>
           </p>
         </button>
+        </div>
       </div>
     </div>
   );
